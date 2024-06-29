@@ -1,108 +1,86 @@
-export default function MyList() {
-  const songs = [
+import React from 'react';
+
+export default function FoodList() {
+  const regionalFoods = [
     {
       id: "1",
-      penyanyi: "Freddie Mercury",
-      namaLagu: "Bohemian Rhapsody",
-      band: "Queen",
-      gambar: "queen.png",
+      nama: "Rendang",
+      asal: "Sumatra Barat",
+      gambar: "rendang.jpg",
     },
     {
       id: "2",
-      penyanyi: "Kurt Cobain",
-      namaLagu: "Smells Like Teen Spirit",
-      band: "Nirvana",
-      gambar: "nirvanaa.jpg",
+      nama: "Sate",
+      asal: "Jawa Barat",
+      gambar: "sate.jpg",
     },
     {
       id: "3",
-      penyanyi: "Chester Bennington",
-      namaLagu: "In the End",
-      band: "Linkin Park",
-      gambar: "linkin.png",
+      nama: "Sop",
+      asal: "Yogyakarta",
+      gambar: "sop.jpg",
     },
     {
       id: "4",
-      penyanyi: "Mick Jagger",
-      namaLagu: "Paint It Black",
-      band: "The Rolling Stones",
-      gambar: "the.jpg",
+      nama: "Bakmi",
+      asal: "Palembang",
+      gambar: "bakmi.jpg",
     },
     {
       id: "5",
-      penyanyi: "Axl Rose",
-      namaLagu: "Sweet Child O' Mine",
-      band: "Guns N' Roses",
-      gambar: "gs.jpg",
-    },
-    {
-      id: "6",
-      penyanyi: "Ahmad Dhani",
-      namaLagu: "Kangen",
-      band: "Dewa 19",
-      gambar: "dw.jpg",
-    },
-    {
-      id: "7",
-      penyanyi: "Ariel",
-      namaLagu: "Separuh Aku",
-      band: "Noah",
-      gambar: "noah.png",
-    },
-    {
-      id: "8",
-      penyanyi: "Bams",
-      namaLagu: "Sahabat Sejati",
-      band: "Samsons",
-      gambar: "sam.jpg",
-    },
-    {
-      id: "9",
-      penyanyi: "Kaka",
-      namaLagu: "Bento",
-      band: "Slank",
-      gambar: "sl.jpg",
-    },
-    {
-      id: "10",
-      penyanyi: "Bono",
-      namaLagu: "With or Without You",
-      band: "U2",
-      gambar: "U2.jpg",
+      nama: "Asinan",
+      asal: "Bogor",
+      gambar: "asinan.jpg",
     },
   ];
 
-  function handleClick(song) {
-    alert(`Nama Penyanyi: ${song.penyanyi}\nBand: ${song.band}\nLagu: ${song.namaLagu}`);
-  }
+  const showInformation = (food) => {
+    alert(`Nama Makanan: ${food.nama}\nAsalnya: ${food.asal}`);
+  };
 
-    return (
-      <div className="my-list bg-gradient-to-r from-sky-500 to-teal-400"> {/* Improved background gradient */}
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {songs.map((song) => (
-              <div key={song.id} className="song-item group relative rounded-lg shadow-lg overflow-hidden">
-                <img
-                  src={song.gambar}
-                  alt={song.namaLagu}
-                  className="w-full h-48 object-cover rounded-lg border border-gray-200 transition group-hover:scale-105 group-hover:filter grayscale-75 duration-300"
-                />
-                <div className="song-info absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-between px-4 py-4">
-                  <div className="text-left">
-                    <h3 className="text-2xl text-white font-semibold">{song.namaLagu}</h3>
-                    <p className="text-base text-gray-300 mt-2">{song.penyanyi} - {song.band}</p>
-                  </div>
-                  <button
-                    onClick={() => handleClick(song)}
-                    className="px-6 py-3 text-white font-semibold rounded-full bg-teal-500 hover:bg-teal-600 transition-colors duration-300"
+  const promptComment = () => {
+    let comment = prompt("Masukkan komentar anda?");
+    alert("Komentar: " + comment);
+  };
+
+  const likeFood = () => {
+    alert("Anda menyukai makanan ini");
+  };
+
+  return (
+    <div className="container mx-auto p-8 bg-gray-100 min-h-screen">
+      <div className="flex flex-wrap justify-center">
+        {regionalFoods.map((food) => (
+          <div key={food.id} className="max-w-xs w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+            <div className="rounded overflow-hidden shadow-lg bg-white transform transition hover:-translate-y-2 hover:shadow-2xl">
+              <img src={food.gambar} alt={food.nama} className="w-full h-48 object-cover"/>
+              <div className="px-6 py-4 text-center">
+                <div className="font-bold text-xl mb-2 text-gray-800">{food.nama}</div>
+                <div className="flex justify-center space-x-2 mt-4">
+                  <button 
+                    onClick={() => showInformation(food)} 
+                    className="bg-teal-500 text-white text-sm py-2 px-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
                   >
-                    Lihat Selengkapnya
+                    Informasi
+                  </button>
+                  <button 
+                    onClick={likeFood} 
+                    className="bg-teal-500 text-white text-sm py-2 px-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
+                  >
+                    Suka
+                  </button>
+                  <button 
+                    onClick={promptComment} 
+                    className="bg-teal-500 text-white text-sm py-2 px-4 rounded-full hover:bg-teal-600 transition-colors duration-300"
+                  >
+                    Komentar
                   </button>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
