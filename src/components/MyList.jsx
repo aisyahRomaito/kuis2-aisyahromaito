@@ -40,7 +40,11 @@ export default function FoodList() {
 
   const promptComment = () => {
     let comment = prompt("Masukkan komentar anda?");
-    alert("Komentar: " + comment);
+    if (comment === null || comment.trim() === "") {
+      alert("Komentar tidak boleh kosong!");
+    } else {
+      alert("Komentar: " + comment);
+    }
   };
 
   const likeFood = () => {
